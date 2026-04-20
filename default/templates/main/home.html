@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="page">
+    <h1>Welcome, {{ username }}</h1>
+
+    <h2 style="margin:2rem 0 1rem;">Messages</h2>
+    {% if messages_data %}
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>IP</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for msg in messages_data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ msg.name }}</td>
+                <td>{{ msg.email }}</td>
+                <td>{{ msg.message|truncatechars:50 }}</td>
+                <td>{{ msg.ip_address }}</td>
+                <td>{{ msg.created_at|date:"d M Y" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p style="color:#888;">No messages yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

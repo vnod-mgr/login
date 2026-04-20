@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Contact Us</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Name</label>
+            {{ form.name }}
+            {% for error in form.name.errors %}<p class="error">{{ error }}</p>{% endfor %}
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            {{ form.email }}
+            {% for error in form.email.errors %}<p class="error">{{ error }}</p>{% endfor %}
+        </div>
+        <div class="form-group">
+            <label>Message</label>
+            {{ form.message }}
+            {% for error in form.message.errors %}<p class="error">{{ error }}</p>{% endfor %}
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+    </form>
+</div>
+{% endblock %}

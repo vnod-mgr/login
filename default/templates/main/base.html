@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Login System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<nav>
+    <a href="{% url 'home' %}" class="logo">MyApp</a>
+    <div>
+        {% if request.session.username %}
+            <span style="color:#c0dd97;font-size:14px;">Hi, {{ request.session.username }}</span>
+            <a href="{% url 'checkform' %}">Contact</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </div>
+</nav>
+
+<div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}error{% else %}success{% endif %}" style="max-width:900px;margin:1rem auto;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+{% block content %}{% endblock %}
+</body>
+</html>
