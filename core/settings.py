@@ -7,6 +7,7 @@ SECRET_KEY = 'django-insecure-change-this-in-production'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['login-k3h6.onrender.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
